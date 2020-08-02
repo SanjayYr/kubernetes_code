@@ -1,0 +1,99 @@
+kubectl get version
+
+kubectl get componentstatus
+
+kubectl get nodes
+
+kubectl describe nodes <node-name>
+
+// Check kubernetes proxy
+kubectl get daemonSets --namespace=kube-system kube-proxy
+
+// Kubernetes DNS
+kubectl get deployments --namespace=kube-system core-dns
+
+// Service that performs load-balancing for the DNS server
+kubectl get services --namespace=kube-system core-dns
+
+// Kubernetes dashboard
+kubectl get deployments --namespace=kube-system kubernetes-dashboard
+kubectl get services --namespace=kube-system kubernetes-dashboard
+kubectl proxy
+
+// Interact with all namespaces
+kubectl --all-namespace
+
+// Sets default namespace instead of 'default', 
+// Updates $HOME/.kube/config
+kubectl config set-context my-context --namespace=mystuff
+kubectl config use-context my-context
+
+kubectl get <resource-name>
+
+kubectl get <resource-name> <obj-name>
+
+// Raw JSON or YAML
+kubectl get <resource-name> -o json
+						    -o yaml
+
+// To manipulate kubectl output, for ex., for UNIX pipes
+kubectl --no-headers
+
+kubectl describe <resource-name> <obj-name>
+
+// Objects in the Kubernetes API are represented as JSON or YAML files
+
+// Create an object 'obj' in K8s
+// Same command to update the object as well
+kubectl apply -f obj.yaml
+
+// If you want to see what the apply command will do without actually 
+// making the changes, you can use the --dry-run flag to print the objects 
+// to the terminal without actually sending them to the server
+
+// Interactive edit instead of editing a local file
+kubectl edit <resource-name> <obj-name>
+
+// Check state of object
+kubectl apply -f myobj.yaml view-last-applied
+							set-last-applied
+							edit-last-applied
+// Delete an object
+kubectl delete -f obj.yaml
+kubectl delete <resource-name> <obj-name>
+
+// Labels and annotations
+// Create
+kubectl label pods bar color=red
+kubectl annotation pods bar color=red
+
+--overwrite flag to overwrite an existing label
+
+// Remove 
+kubectl label pods bar color-
+
+// Debugging commands
+kubectl logs <pod-name>
+kubectl logs <pod-name>	-c <container-id>
+// -f flag to stream logs to terminal without exiting
+
+// Execute a command on a running container
+kubectl exec -it <pod-name> -- bash
+				
+kubectl attach -it <pod-name>
+
+// Copy files to and from container
+kubectl cp <pod-name>:</path/to/remote/file> </path/to/local/file>
+
+// Port forwarding
+kubectl port-forward <pod-name> <local-machine-port>:<container-port>
+kubectl port-forward <pod-name> 8080:80
+
+// How cluster is using resources
+kubectl top nodes
+kubectl top pods
+
+// Install bash-completion for auto-complete feature
+
+
+
