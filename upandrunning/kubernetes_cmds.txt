@@ -96,4 +96,31 @@ kubectl top pods
 // Install bash-completion for auto-complete feature
 
 
+// Pods, declarative configuration, pod manifest files
+
+// etcd for persistent storage
+
+// Create and delete pod
+kubectl run kuard --generator=run-pod/v1 \
+--image=gcr.io/kuar-demo/kuard-amd64:blue
+
+kubectl get pods
+
+kubectl delete pods/kuard
+
+// Running Pod
+kubectl apply -f kuard-pod.yaml
+
+// kubelet daemon process on nodes
+
+kubectl get pods
+
+// Pod details
+kubectl describe pods kuard
+
+// Deleting a pod
+kubectl delete pods/kuard
+
+kubectl delete -f kuard-pod.yaml
+
 
